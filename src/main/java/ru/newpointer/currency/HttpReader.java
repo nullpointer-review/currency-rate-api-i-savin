@@ -1,5 +1,8 @@
 package ru.newpointer.currency;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,15 +12,17 @@ import java.net.URLConnection;
 import java.nio.charset.Charset;
 
 /**
- * Created by isavin on 27.09.15.
+ * Получение строкового представления страницы по указанному адресу
  */
 public class HttpReader {
 
+    private final static Logger logger = LoggerFactory.getLogger(HttpReader.class);
     private URL url;
 
 
     public HttpReader(String url) throws MalformedURLException {
         this.url = new URL(url);
+        logger.info("HTTP reader created for URL: [{}]", this.url);
     }
 
     public String getPageContent() throws IOException {
@@ -28,7 +33,7 @@ public class HttpReader {
             String inputLine;
 
             while ((inputLine = br.readLine()) != null) {
-                System.out.println(inputLine);
+//                logger.info("Line read: {}", inputLine);
                 sb.append(inputLine);
             }
             return sb.toString();

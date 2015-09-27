@@ -29,10 +29,9 @@ import javax.xml.stream.events.XMLEvent;
 
 @RestController
 public class GreetingController {
-    //TODO добавить логгер
     //TODO написать тесты
-    //TODO сделать сборку запускаемый jar
     //TODO сделать сборку war
+    //TODO обработка ошибок
     //TODO форматировать json...
     //TODO отладить
     //TODO почистить
