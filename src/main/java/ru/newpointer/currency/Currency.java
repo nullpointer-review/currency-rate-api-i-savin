@@ -1,9 +1,9 @@
 package ru.newpointer.currency;
 
 /**
- * Created by isavin on 27.09.15.
+ * @author isavin
  */
-public class Currency implements Response {
+public class Currency implements IResponse {
 
     private String code;
     private String rate = "unknown";
