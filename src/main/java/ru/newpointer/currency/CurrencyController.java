@@ -17,17 +17,17 @@ import java.net.MalformedURLException;
 public class CurrencyController {
 
     private final static Logger logger = LoggerFactory.getLogger(CurrencyController.class);
-    public static final String XML_DAILY_COURSES_URL = "http://www.cbr.ru/scripts/XML_daily.asp";
+    public static final String XML_DAILY_COURSES_URL = "http://www.cbr.ru1/scripts/XML_daily.asp";
     public static final String DATE_APPENDER = "?date_req=%s";
 
     @RequestMapping("/currency/api/{code}")
-    public Currency currency(@PathVariable String code) {
+    public Response currency(@PathVariable String code) {
         logger.info("Getting currency rate for: [{}]", code);
-        return getCurrencyFromCbr(XML_DAILY_COURSES_URL, code);
+        return getResponse(XML_DAILY_COURSES_URL, code);
     }
 
     @RequestMapping("/currency/api/{code}/{date}")
-    public Currency currency(@PathVariable String code,
+    public Response currency(@PathVariable String code,
                              @PathVariable String date) {
         logger.info("Getting currency rate for: [{}, {}]", code, date);
         String[] dateParts = date.split("-");
@@ -36,24 +36,25 @@ public class CurrencyController {
                 .append(dateParts[1])
                 .append("/")
                 .append(dateParts[0]);
-        return getCurrencyFromCbr(XML_DAILY_COURSES_URL + String.format(DATE_APPENDER, dateFormatted.toString()), code);
+        return getResponse(XML_DAILY_COURSES_URL + String.format(DATE_APPENDER, dateFormatted.toString()), code);
     }
 
-    private Currency getCurrencyFromCbr(String url, String code) {
+    private Response getResponse(String url, String code) {
         try {
-            HttpReader reader = new HttpReader(url);
-            String xmlContent = reader.getPageContent();
-            XmlCurrenciesParser parser = new XmlCurrenciesParser(xmlContent);
-            return parser.getCurrencyByCode(code);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-            return new Currency();
+            return getCurrencyFromCbr(url, code);
         } catch (IOException e) {
-            e.printStackTrace();
-            return new Currency();
+            logger.error("Error reading page content: [{}]", e);
+            return new Fault("Error reading page content", e.toString());
         } catch (XMLStreamException e) {
-            e.printStackTrace();
-            return new Currency();
+            logger.error("Error parsing XML content: [{}]", e);
+            return new Fault("Error parsing XML content", e.toString());
         }
+    }
+
+    private Currency getCurrencyFromCbr(String url, String code) throws IOException, XMLStreamException {
+        HttpReader reader = new HttpReader(url);
+        String xmlContent = reader.getPageContent();
+        XmlCurrenciesParser parser = new XmlCurrenciesParser(xmlContent);
+        return parser.getCurrencyByCode(code);
     }
 }

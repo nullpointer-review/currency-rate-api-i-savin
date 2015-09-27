@@ -31,7 +31,6 @@ import javax.xml.stream.events.XMLEvent;
 public class GreetingController {
     //TODO написать тесты
     //TODO сделать сборку war
-    //TODO обработка ошибок
     //TODO форматировать json...
     //TODO отладить
     //TODO почистить
