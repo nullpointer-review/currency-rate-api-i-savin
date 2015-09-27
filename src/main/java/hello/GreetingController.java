@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
-import org.apache.axis.message.MessageElement;
+//import org.apache.axis.message.MessageElement;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-import javax.xml.rpc.ServiceException;
+//import javax.xml.rpc.ServiceException;
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
@@ -30,7 +30,6 @@ import javax.xml.stream.events.XMLEvent;
 @RestController
 public class GreetingController {
     //TODO написать тесты
-    //TODO сделать сборку war
     //TODO форматировать json...
     //TODO отладить
     //TODO почистить

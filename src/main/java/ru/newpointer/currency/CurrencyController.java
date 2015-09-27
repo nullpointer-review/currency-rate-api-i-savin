@@ -17,7 +17,7 @@ import java.net.MalformedURLException;
 public class CurrencyController {
 
     private final static Logger logger = LoggerFactory.getLogger(CurrencyController.class);
-    public static final String XML_DAILY_COURSES_URL = "http://www.cbr.ru1/scripts/XML_daily.asp";
+    public static final String XML_DAILY_COURSES_URL = "http://www.cbr.ru/scripts/XML_daily.asp";
     public static final String DATE_APPENDER = "?date_req=%s";
 
     @RequestMapping("/currency/api/{code}")

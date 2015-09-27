@@ -26,6 +26,7 @@ public class XmlCurrenciesParser {
         logger.info("Forming currency for char code: [{}]", charCode);
         //в случае неблагополучного исхода возвращать будем не null, а пустую Currency
         Currency currency = new Currency();
+        currency.setCode(charCode);
         boolean currencyFound = false;//признак остановки во время парсинга
 
         XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
@@ -45,7 +46,6 @@ public class XmlCurrenciesParser {
                     //его содержимое равно переданному коду валюты
                     if (xmlCharCode.equals(charCode)) {
                         currencyFound = true;//нужная валюта найдена
-                        currency.setCode(xmlCharCode);//проставляем код валюты
                     }
                     //нашли тег Value и валюта уже найдена
                 } else if (xmlEvent.asStartElement().getName().getLocalPart().equals("Value") && currencyFound) {
