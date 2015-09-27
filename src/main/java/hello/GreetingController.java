@@ -29,16 +29,11 @@ import javax.xml.stream.events.XMLEvent;
 
 @RestController
 public class GreetingController {
-    //TODO переименовать контроллер
-    //TODO создать entity для валюты
-    //TODO создать http-reader
-    //TODO создать парсер
-    //TODO научиться получать валюту на опеределенную дату
-    //TODO научиться получать валюту без даты и с датой
     //TODO добавить логгер
     //TODO написать тесты
     //TODO сделать сборку запускаемый jar
     //TODO сделать сборку war
+    //TODO форматировать json...
     //TODO отладить
     //TODO почистить
     //TODO сдать!
@@ -46,7 +41,7 @@ public class GreetingController {
     public static final String XML_DAILY_COURSES_URL = "http://www.cbr.ru/scripts/XML_daily.asp";
     public static final String DATE_APPENDER = "?date_req=02/03/2002";
 
-    @RequestMapping("/currency/api/{code}")
+//    @RequestMapping("/currency/api/{code}")
     public String currency(@PathVariable String code) {
         StringBuffer sb = new StringBuffer();
         URL url;
