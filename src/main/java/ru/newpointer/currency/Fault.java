@@ -1,9 +1,9 @@
 package ru.newpointer.currency;
 
 /**
- * Created by isavin on 27.09.15.
+ * Имплементация ошибки в работе сервиса
  */
-public class Fault implements Response {
+public class Fault implements IResponse {
     private String errorDescription;
     private String errorCause;
 
